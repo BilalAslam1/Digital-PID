@@ -1,0 +1,10 @@
+#!/bin/zsh
+if [ `arch` = sun4 ]
+then
+	echo Compiling $1 on SunOS
+	gcc -DON_SUN -DSIMULATE -D_REENTRANT -D__USE_POSIX199309 -D_GNU_SOURCE -o `basename $1 '.c'` $1 /home/courses/ele709/libdlab_sun.a -lpthread -lm -lrt
+else
+	echo Compiling $1 on Liunx
+	gcc -DON_LINUX -DSIMULATE -D_REENTRANT -D__USE_POSIX199309 -D_GNU_SOURCE -o `basename $1 '.c'` $1 /home/courses/ele709/libdlab.a -lpthread -lrt -lm
+fi
+echo Done.

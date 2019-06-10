@@ -1,0 +1,10 @@
+#!/bin/zsh
+if [ `uname -r` != 2.6.32.20RealTimeKernelRTAI-3.9.1 ]
+then
+	echo Hardware and RT mode can be used on Linux workstations in ENG413 only.
+	exit 1;
+else
+	echo Compiling $1 in Hardware mode ...
+	/usr/bin/gcc -DON_LINUX -D_REENTRANT -D__USE_POSIX199309 -D_GNU_SOURCE -I/usr/realtime/include -o `basename $1 '.c'` $1 /home/courses/ele709/libdlab.a /usr/realtime/lib/liblxrt.a -lpthread -lm -lrt
+fi
+echo Done.
